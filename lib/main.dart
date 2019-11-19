@@ -4,7 +4,15 @@ void main() => runApp(MaterialApp(
   home: MemberCard(),
 ));
 
-class MemberCard extends StatelessWidget {
+class MemberCard extends StatefulWidget {
+  @override
+  _MemberCardState createState() => _MemberCardState();
+}
+
+class _MemberCardState extends State<MemberCard> {
+
+  int gymLevel = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,6 +22,15 @@ class MemberCard extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.grey[850],
         elevation: 0.0,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            gymLevel += 1; // gymLevel++ works as well
+          });
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.grey[600],
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 40.0, horizontal: 30.0),
@@ -71,6 +88,25 @@ class MemberCard extends StatelessWidget {
               )
             ),
             SizedBox(height: 30.0),
+            Text(
+              'GYM LEVEL',
+              style: TextStyle(
+                color: Colors.grey,
+                letterSpacing: 2.5,
+
+              )
+            ),
+            SizedBox(height: 10.0),
+            Text(
+              '$gymLevel',
+              style: TextStyle(
+                color: Colors.pinkAccent[200],
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 2.0
+              )
+            ),
+            SizedBox(height: 30.0),
             Row(
               children: <Widget>[
                 Icon(
@@ -95,3 +131,4 @@ class MemberCard extends StatelessWidget {
     );
   }
 }
+
